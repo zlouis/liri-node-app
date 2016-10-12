@@ -1,0 +1,18 @@
+var twitter = require('twitter');
+
+var client = new twitter ({
+  consumer_key: 'eIZSRvch65EenpaRcRX7rcbZH',
+  consumer_secret: 'hLW7NhGSG3Q8wqs8E1c2ldGmBBVeAbmUN8w4KQ9DiDeB53LBRq',
+  access_token_key: '27452949-R0e8MGmxVXuGOlC4vVJyfTrePA6r7OmFkKpqqV0Rf',
+  access_token_secret: '2Q7fvSt9L20TxldVgEIPyNVNvcU8sw1UXd3EFdgMNh4YS',
+});
+
+
+  var params = {screen_name: 'zLouisH'};
+
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
+    console.log(data)
+  }
+});
