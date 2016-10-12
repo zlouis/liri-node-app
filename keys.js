@@ -10,9 +10,3 @@ var client = new twitter ({
 
   var params = {screen_name: 'zLouisH'};
 
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-    console.log(tweets);
-    console.log(data)
-  }
-});

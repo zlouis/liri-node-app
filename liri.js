@@ -55,33 +55,31 @@ switch (userCommand) {
 
 ///twitter
 
-function showTweets() {
-var client = new twitter ({
+function showTweets(){
+
+  var client = new twitter ({
   consumer_key: 'eIZSRvch65EenpaRcRX7rcbZH',
   consumer_secret: 'hLW7NhGSG3Q8wqs8E1c2ldGmBBVeAbmUN8w4KQ9DiDeB53LBRq',
   access_token_key: '27452949-R0e8MGmxVXuGOlC4vVJyfTrePA6r7OmFkKpqqV0Rf',
   access_token_secret: '2Q7fvSt9L20TxldVgEIPyNVNvcU8sw1UXd3EFdgMNh4YS',
 })
-
-var params = {screen_name: 'zLouisH'};
-
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error) {
-
-    for (var i=0; i<tweets.length; i++) {
+  //Display last 20 Tweets
+  var screenName = {screen_name: 'zLouisH'};
+  client.get('statuses/user_timeline', screenName, function(error, tweets, response){
+    if(!error){
+      for(var i = 0; i<tweets.length; i++){
         var date = tweets[i].created_at;
-        console.log("zLouisH: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+        console.log("@zLouisH': " + tweets[i].text + " Created At: " + date.substring(0, 19));
         console.log("-----------------------");
-
-        fs.appendFile("zLouisH: " + tweets[i].text + " Created At: " + date.substring(0, 19));
-
+        
+        //adds text to log.txt file
+        fs.appendFile('log.txt', "@zLouisH': " + tweets[i].text + " Created At: " + date.substring(0, 19));
+        fs.appendFile('log.txt', "-----------------------");
+      }
+    }else{
+      console.log('Error occurred');
     }
-
-   }
-   else {
-          console.log('Error occurred');
-   }
-});
+  });
 }
 
 /////omdb
@@ -142,14 +140,10 @@ if ( movieName===null) {
 
 ///spotify 
 
-function showSpotify(song) {
-var songName=process.argv[3]
-
-spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
-
-    if (!err ) {
-
-         for(var i = 0; i < data.tracks.items.length; i++){
+function showSpotify(song){
+  spotify.search({ type: 'track', query: song}, function(error, data){
+    if(!error){
+      for(var i = 0; i < data.tracks.items.length; i++){
         var songData = data.tracks.items[i];
         //artist
         console.log("Artist: " + songData.artists[0].name);
