@@ -9,5 +9,4 @@ Week 10 (LIRI Bot)
 	* `movie-this`
 
 	* `do-what-it-says`
-	
-
+The application searches through movies on omDB, spotify and twitter and pulls information from those sources.
